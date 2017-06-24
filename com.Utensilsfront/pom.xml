@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.Utensils</groupId>
+  <artifactId>com.Utensilsfront</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+	<build>
+        <plugins>
+            <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <goals><goal>copy</goal></goals>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.github.jsimone</groupId>
+                            <artifactId>webapp-runner</artifactId>
+                            <version>8.5.11.2</version>
+                            <destFileName>webapp-runner.jar</destFileName>
+                        </artifactItem>
+                    </artifactItems>
+                    
+                    <configVars>
+					  <MY_VAR>SomeValue</MY_VAR>
+					  <JAVA_OPTS>-Xss512k -XX:+UseCompressedOops</JAVA_OPTS>
+					</configVars>
+					
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+            
+        </plugins>
+    </build>
+</project>

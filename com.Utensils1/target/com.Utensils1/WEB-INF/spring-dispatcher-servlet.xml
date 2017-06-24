@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    
+     xsi:schemaLocation="http://www.springframework.org/schema/beans     
+   	http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+   http://www.springframework.org/schema/websocket
+   http://www.springframework.org/schema/websocket/spring-websocket.xsd"
+   >
+   
+
+  <context:component-scan base-package="com.Utensils1" />
+
+
+<mvc:resources location="/Resources/" mapping="/Resources/**" />
+	<mvc:annotation-driven/>
+
+
+<tx:annotation-driven/>
+
+
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".jsp" />
+      
+   </bean>
+   
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://mysql4.gear.host/vishal1" />
+		<property name="username" value="vishal1" />
+		<property name="password" value="Rh5R!I5hcH?6" />
+	</bean>
+   
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+		<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+			
+		</property>
+		<property name="packagesToScan">
+		
+		<list>
+		    <value>com.Utensils1.Product</value>
+           
+		</list>
+		</property>
+		
+		</bean>
+		</beans>
+	
